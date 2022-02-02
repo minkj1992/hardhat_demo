@@ -7,15 +7,15 @@
 ## init
 
 ```shell
-yarn init -y
-yarn add hardhat --dev
-yarn add @openzeppelin/hardhat-upgrades --dev
+$ yarn init -y
+$ yarn add hardhat --dev
+$ yarn add @openzeppelin/hardhat-upgrades --dev
 ```
 
 ## test
 
 ```shell
-npx hardhat test
+$ npx hardhat test
 ```
 
 ## deploy
@@ -23,7 +23,7 @@ npx hardhat test
 - `ganache`같은 내부 노드 실행
 
 ```shell
-npx hardhat node
+$ npx hardhat node
 ```
 
 - deploy
@@ -52,4 +52,13 @@ undefined
 undefined
 > (await ssu.get()).toString()
 '1000'
+```
+
+- upgrade contract version
+
+```shell
+$ npx hardhat run --network localhost ./scripts/SimpleStorageUpgradeV2.deploy.js
+Compiling 1 file with 0.8.4
+Solidity compilation finished successfully
+SimpleStorageUpgrade version 2 deployed to: 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0
 ```

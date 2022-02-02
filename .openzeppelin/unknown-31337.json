@@ -7,7 +7,7 @@
       "hash": "0xcb51be81f2008d1050ebe8cff60fe69a07fa6c0eb3324d0d3ff7ff3a7b6cdd01",
       "type": 2,
       "accessList": [],
-      "blockHash": "0x4ac9045c24d1d9f60375a2f234a379a137481720fb90ca3b384ea26df4761cc2",
+      "blockHash": "0xa2c35e9029d38fe023366fc78a448b6893dab5833d12d3234a65f34cde03a5d3",
       "blockNumber": 2,
       "transactionIndex": 0,
       "confirmations": 1,
@@ -60,6 +60,56 @@
             "label": "storedData",
             "type": "t_uint256",
             "src": "contracts/SimpleStorageUpgrade.sol:7"
+          }
+        ],
+        "types": {
+          "t_uint256": {
+            "label": "uint256"
+          }
+        }
+      }
+    },
+    "3e8ac1f0df442475ab9cc643981c1a8be23fce54a2162a8487b881cfc55590d9": {
+      "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      "txHash": "0xccd4fa77c5c7a82d20a769f892457f07942f7c389fedc692f289151e014a00e6",
+      "layout": {
+        "storage": [
+          {
+            "contract": "SimpleStorageUpgradeV2",
+            "label": "storedData",
+            "type": "t_uint256",
+            "src": "contracts/SimpleStorageUpgradeV2.sol:5"
+          },
+          {
+            "contract": "SimpleStorageUpgradeV2",
+            "label": "storedKey",
+            "type": "t_uint256",
+            "src": "contracts/SimpleStorageUpgradeV2.sol:6"
+          }
+        ],
+        "types": {
+          "t_uint256": {
+            "label": "uint256"
+          }
+        }
+      }
+    },
+    "393da63a50a73e4dfda4671b97cd1f6ce6d4baa2ca020e5dc0a2a6af4d86ec1c": {
+      "address": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+      "txHash": "0x8551f95571a0b246eeb7213ed723f2cfd657e283672ba3d72387688c2716cdfc",
+      "layout": {
+        "storage": [
+          {
+            "contract": "SimpleStorageUpgradeV2",
+            "label": "storedData",
+            "type": "t_uint256",
+            "src": "contracts/SimpleStorageUpgradeV2.sol:5"
+          },
+          {
+            "contract": "SimpleStorageUpgradeV2",
+            "label": "storedKey",
+            "type": "t_uint256",
+            "src": "contracts/SimpleStorageUpgradeV2.sol:6"
           }
         ],
         "types": {
