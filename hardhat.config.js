@@ -1,6 +1,7 @@
 require("dotenv").config();
 require("@nomiclabs/hardhat-waffle");
 require("@openzeppelin/hardhat-upgrades");
+require("@nomiclabs/hardhat-etherscan");
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();

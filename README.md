@@ -4,7 +4,9 @@
 
 `hardhat`과 `openzeppelin` 환경에서 간단한 Upgradable contract를 생성해봅니다.
 
-## init
+## setup
+
+### init
 
 ```shell
 $ yarn init -y
@@ -12,13 +14,13 @@ $ yarn add hardhat --dev
 $ yarn add @openzeppelin/hardhat-upgrades --dev
 ```
 
-## test
+### test
 
 ```shell
 $ npx hardhat test
 ```
 
-## deploy
+### deploy
 
 - `ganache`같은 내부 노드 실행
 
@@ -63,7 +65,7 @@ Solidity compilation finished successfully
 SimpleStorageUpgrade version 2 deployed to: 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0
 ```
 
-## deploy to remote network
+### deploy to remote network
 
 > [hardhat docs](https://hardhat.org/config/)
 
@@ -111,18 +113,24 @@ module.exports = {
 ![](./static/3.png)
 ![](./static/4.png)
 
-### deploy to `rinkeby`
+## deploy remote blockchain network
+
+> `rinkeby` network (test-net)
 
 ```shell
 $ npx hardhat run --network rinkeby ./scripts/SimpleStorageUpgrade.deploy.js
-SimpleStorageUpgrade deployed to: 0x06F2871f9A193762f0D104809b579b241508e312
+Downloading compiler 0.8.4
+Compiling 3 files with 0.8.4
+Solidity compilation finished successfully
+
+SimpleStorageUpgrade deployed to: 0xCe93de7572e3346F1f91Ad39ce06e8F6c6312b69
 ```
 
 테스트넷이기 때문에 약간의 시간이 소요됩니다. (약 30초) 이후 deploy된 address는 [rinkeby etherscan](https://rinkeby.etherscan.io/)에서 확인가능합니다.
 
-- https://rinkeby.etherscan.io/address/0x06F2871f9A193762f0D104809b579b241508e312
+- https://rinkeby.etherscan.io/address/0xCe93de7572e3346F1f91Ad39ce06e8F6c6312b69
 
-![proxy contract check](https://rinkeby.etherscan.io/proxyContractChecker)
+[proxy contract check](https://rinkeby.etherscan.io/proxyContractChecker)
 
 ![](./static/8.png)
 
@@ -130,6 +138,32 @@ SimpleStorageUpgrade deployed to: 0x06F2871f9A193762f0D104809b579b241508e312
 
 아직 implementation이 검증되지 않았다고 뜬다. 이렇게 proxy가 아닌 implementation contract를 검증해주기 위해서는 아래와 같이 추가 작업해주면 됩니다.
 
+## verify implementation
+
+> [docs](https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html)
+
+먼저 hardhat에서 제공해주는 etherscan 의존성을 설치해줍니다.
+
 ```shell
 $ yarn add @nomiclabs/hardhat-etherscan --dev
 ```
+
+이후 아래 명령어를 통해서, **로컬의 deploy된 컨트랙트와 실제 rinkeby에 배포된 컨트랙트를 비교해서 검증해주는 로직을 타줍니다.**
+
+```shell
+//npx hardhat verify --network rinkeby "<리모트 배포된 implementation address>"
+$ npx hardhat verify --network rinkeby "0x92a949706c10fd221b9a073f4284b4bdbc47e6d7"
+Compiling 3 files with 0.8.4
+Solidity compilation finished successfully
+Compiling 1 file with 0.8.4
+Successfully submitted source code for contract
+contracts/SimpleStorageUpgrade.sol:SimpleStorageUpgrade at 0x92a949706c10fd221b9a073f4284b4bdbc47e6d7
+for verification on the block explorer. Waiting for verification result...
+
+Successfully verified contract SimpleStorageUpgrade on Etherscan.
+https://rinkeby.etherscan.io/address/0x92a949706c10fd221b9a073f4284b4bdbc47e6d7#code
+```
+
+![](./static/9.png)
+
+이상으로 [배포된 컨트랙트](https://rinkeby.etherscan.io/address/0x92a949706c10fd221b9a073f4284b4bdbc47e6d7#code)에서 정상적으로 배포된 컨트랙트를 확인할 수 있습니다.
